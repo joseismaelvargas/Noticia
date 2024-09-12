@@ -11,3 +11,12 @@
   display: flex;
   justify-content: space-around;
 }
+.cartas{
+  margin: 70px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+}
+.carta{
+  margin: 10px;
+}
