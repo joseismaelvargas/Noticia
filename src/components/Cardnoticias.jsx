@@ -1,5 +1,12 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+// Componentes:
+// Título
+// Formulario (este contiene el select)
+// ListaNoticias
+// Noticia 
+
+// Desde el select superior, debe poder elegir las diferentes categorías (provistas por la api ver en la documentación) y cargar en cards las mismas.
 
 function Cardnoticias( {key,title,img}) {
   return (
@@ -11,7 +18,7 @@ function Cardnoticias( {key,title,img}) {
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
   );

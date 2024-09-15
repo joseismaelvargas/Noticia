@@ -1,54 +1,72 @@
 import { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import Cardnoticias from './Cardnoticias';
 
 function Formulario() {
-  const { register, handleSubmit ,formState:{errors}} = useForm();
-  const[noticia,setnoticia]=useState([])
-  // const[noticia,setnoticia]=useState()
- const Api= async()=>{
-  try{
-    const api=await fetch("https://newsdata.io/api/1/latest?apikey=pub_53274a28b0b7fe9b499f4781c62b8b0e901e7&q=pizza&language=es")
-     console.log(api)
-    if(api.status===200){
-      let leer=await api.json()
-      let noti=leer.results
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [noticia, setNoticia] = useState([]);
 
-      
-      setnoticia(noti)
-    
-       
+  // Función para llamar a la API con el valor seleccionado
+  const Api = async (valor) => {
+    try {
+      const api = await fetch(`https://newsapi.org/v2/everything?q=${valor}&apiKey=aea3419985dd49e29d64da46792d32ea`);
+      if (api.status === 200) {
+        let leer = await api.json();
+        let noti = leer.articles;
+        console.log(noti);
+        setNoticia(noti);
+      } else {
+        alert("Error en la solicitud: " + api.status);
+      }
+    } catch (error) {
+      console.error("Error al hacer fetch:", error);
+      alert("Error al obtener las noticias");
     }
-  }catch{
-    alert("Error")
-  }
-}
-Api()
+  };
+
+
+  const buscar = (data) => {
+    if (data.opciones !== 'Opciones') {
+      Api(data.opciones); 
+    } else {
+      alert('Por favor, selecciona una categoría.');
+    }
+  };
   useEffect(()=>{
-  
+ Api()
   },[])
- 
-console.log(noticia)
+
   return (
     <>
-    <div className='div container'>
-      <h2 className='text center ml-3'> Buscar por Categoria :</h2>
-      <Form.Select className='select' aria-label="Default select example">
-      <option className='title'>Opciones</option>
-      <option value="1">One</option>
-      <option value="2">Two</option>
-      <option value="3">Three</option>
-    </Form.Select>
-    </div>
-    <div className='container cartas'>
-      {noticia.map((element)=>(
-          <Cardnoticias key={element.source_id} title={element.title} img={element.image_url}></Cardnoticias>
-      ))
-      
-      }
-     
-    </div>
+      <div className='container'>
+        <h2 className='text-center ml-3'>Buscar por Categoría:</h2>
+        <Form onSubmit={handleSubmit(buscar)}>
+          <Form.Select className='select' aria-label="Default select example" {...register("opciones", { required: true })}>
+            <option value="Opciones">Opciones</option>
+            <option value="deporte">Deporte</option>
+            <option value="tecnologia">Tecnología</option>
+            <option value="Criptomoneda">Criptomoneda</option>
+          </Form.Select>
+          {errors.opciones && <span>Por favor, selecciona una opción</span>}
+          <button className='btn btn-primary mt-3' type='submit'>Buscar</button>
+        </Form>
+      </div>
+
+      {/* Mostrar noticias */}
+      <div className='container cartas mt-4'>
+        {noticia.length > 0 ? (
+          noticia.map((element, index) => (
+            <Cardnoticias 
+              key={index} 
+              title={element.title} 
+              img={element.urlToImage} 
+            />
+          ))
+        ) : (
+          <p>No hay noticias disponibles para la categoría seleccionada.</p>
+        )}
+      </div>
     </>
   );
 }
