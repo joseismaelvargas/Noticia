@@ -12,24 +12,27 @@
   justify-content: space-around;
 }
 .cartas{
-  margin: 70px;
+  margin: 70px auto;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-around;
+  max-width: 1200px;
 }
 .carta{
   margin: 10px;
   height: 400px;
+  width: calc(25% - 20px)
 }
 
 @media only screen and (max-width: 600px){
   .carta{
-    width: auto;
-    height: auto;
-    margin: 20px;
+    width: calc(50% - 20px); /* 2 cartas por fila */
+    height: 400px; 
+    margin: 50px;
   }
   .cartas{
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: 0px -20px;
   }
 }
