@@ -68,6 +68,7 @@ function Formulario() {
 
            {errors.region&&<span>Seleciona una region</span>}
           {errors.opciones && <span>Por favor, selecciona una opción</span>}
+          <br />
           <button className='buscar btn btn-primary mt-3' type='submit'>Buscar</button>
         </Form>
       </div>
