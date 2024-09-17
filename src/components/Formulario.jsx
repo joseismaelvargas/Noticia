@@ -23,12 +23,10 @@ function Formulario() {
         console.log(leer);
         setNoticia(noti);
 
-      } else {
-        alert("Error en la solicitud: " + api.status);
-      }
+      } 
     } catch (error) {
       console.error("Error al hacer fetch:", error);
-      alert("Error al obtener las noticias");
+   
     }
   };
 
@@ -44,6 +42,7 @@ function Formulario() {
   useEffect(()=>{
  Api()
   },[])
+ 
 
   return (
     <>
@@ -52,14 +51,14 @@ function Formulario() {
       
         <Form onSubmit={handleSubmit(buscar)} className='d-flex justify-content-center'>
           <Form.Select className='select' aria-label="Default select example" aria-placeholder='opciones' {...register("opciones", { required: true })}>
-            <option value="Opciones">Opciones</option>
+            <option value="deporte">Opciones</option>
             <option value="deporte">Deporte</option>
             <option value="tecnologia">Tecnología</option>
             <option value="Criptomoneda">Criptomoneda</option>
             <option value="politica">Politica</option>
           </Form.Select>
           <Form.Select className='select' aria-label='Default select example' {...register("region",{required:true})}>
-            <option value="Opciones">Region</option>
+            <option value="ar">Region</option>
             <option value="ar">Latino America</option>
             <option value="us">Norte America</option>
             
@@ -75,7 +74,7 @@ function Formulario() {
 
        <hr />
       <div className='container cartas mt-4'>
-        {loading===true ? (<Riple color="black" size="50px" text="Espere.." textColor="" /> 
+        {loading===true? (<Riple color="black" size="50px" text="Espere.." textColor="" /> 
          
           )
          : (
