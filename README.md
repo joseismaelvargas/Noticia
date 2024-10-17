@@ -1,8 +1,13 @@
 # Noticia Api
+# 📰 NewsApp - Consumo de API de Noticias
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**NewsApp** es una aplicación frontend desarrollada en **React** que permite a los usuarios ver las últimas noticias de diferentes categorías y países en tiempo real. La aplicación consume una API de noticias y presenta los artículos de manera atractiva y fácil de leer.
 
-Currently, two official plugins are available:
+## 🚀 Características
+- Visualización de noticias actualizadas de diversas fuentes.
+- Filtro de noticias por categorías (como Tecnología, Deportes, Negocios, etc.).
+- Filtro de noticias por países.
+-interfas Responsiva
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📂 Estructura del Proyecto
+
